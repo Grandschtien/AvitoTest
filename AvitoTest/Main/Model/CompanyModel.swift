@@ -7,5 +7,5 @@
 
 import Foundation
 struct CompanyModel: Codable {
-    let company: Company?
+    var company: Company?
 }

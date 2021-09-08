@@ -36,7 +36,9 @@ class MainPresenter: MainViewPresenterProtocol {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
-                case .success(let companyModel):
+                case .success(var companyModel):
+                    let sortedEmployees = companyModel.company?.employees?.sorted(by: {$0.name! < $1.name!})
+                    companyModel.company?.employees = sortedEmployees
                     self.companyModel = companyModel
                     self.view?.success()
                 case .failure(let error):

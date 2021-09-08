@@ -16,7 +16,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.title = presenter?.companyModel?.company?.name
         self.setupTableView()
     }
     
@@ -55,6 +54,7 @@ extension MainViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
         tableView.rowHeight = 100
         tableView.register(UINib(nibName: CompanyCell.nib, bundle: nil), forCellReuseIdentifier: "Cell")
         self.view.addSubview(tableView)
@@ -71,11 +71,11 @@ extension MainViewController {
 extension MainViewController: MainViewProtocol {
     func success() {
         self.tableView.reloadData()
+        self.title = presenter?.companyModel?.company?.name
     }
     
     func failure(error: Error) {
         setupLabel()
-        print(error.localizedDescription)
     }
 }
 
