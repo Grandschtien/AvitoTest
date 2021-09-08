@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Company: Codable {
+class Company: Codable {
     var name: String?
     var employees: [Employee]?
 }

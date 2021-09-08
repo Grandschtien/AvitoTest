@@ -6,6 +6,6 @@
 //
 
 import Foundation
-struct CompanyModel: Codable {
+class CompanyModel: Codable {
     var company: Company?
 }

@@ -21,8 +21,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func reloadData() {
-        presenter?.reloadData()
-        
+        presenter?.getCompany()
     }
     
 }

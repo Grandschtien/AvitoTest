@@ -14,12 +14,10 @@ protocol MainViewProtocol: AnyObject {
 protocol MainViewPresenterProtocol {
     init(view: MainViewProtocol, networkService: NetworkingProtocol, router: RoutingProtocol)
     func getCompany()
-    func reloadData()
     var companyModel: CompanyModel? { get set }
 }
 
 class MainPresenter: MainViewPresenterProtocol {
-    
     var companyModel: CompanyModel?
     var view: MainViewProtocol?
     var networkService: NetworkingProtocol?
@@ -37,7 +35,7 @@ class MainPresenter: MainViewPresenterProtocol {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
-                case .success(var companyModel):
+                case .success(let companyModel):
                     let sortedEmployees = companyModel.company?.employees?.sorted(by: {$0.name! < $1.name!})
                     companyModel.company?.employees = sortedEmployees
                     self.companyModel = companyModel
@@ -48,22 +46,6 @@ class MainPresenter: MainViewPresenterProtocol {
             }
         }
     }
-    func reloadData() {
-        networkService?.getCompany(urlString: "https://run.mocky.io/v3/1d1cb4ec-73db-4762-8c4b-0b8aa3cecd4c")
-        { [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(var companyModel):
-                    let sortedEmployees = companyModel.company?.employees?.sorted(by: {$0.name! < $1.name!})
-                    companyModel.company?.employees = sortedEmployees
-                    self.companyModel = companyModel
-                    self.view?.success()
-                case .failure(let error):
-                    self.view?.failure(error: error)
-                }
-            }
-        }
-    }
+    
 }
 
