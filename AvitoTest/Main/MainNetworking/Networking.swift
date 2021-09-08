@@ -20,12 +20,9 @@ class Networking: NetworkingProtocol {
             }
             guard let data = data else { return }
             do {
-                print(data)
                 let company = try JSONDecoder().decode(CompanyModel.self, from: data)
-                print("get company \(company)")
                 completion(.success(company))
             } catch {
-                print("Ошибка в сетевом слое")
                 completion(.failure(error))
             }
         }.resume()

@@ -21,7 +21,8 @@
 		6078629726E8EED0004B8765 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6078629626E8EED0004B8765 /* Builder.swift */; };
 		6078629926E8EFCC004B8765 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6078629826E8EFCC004B8765 /* Router.swift */; };
 		6078629C26E8F845004B8765 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6078629B26E8F845004B8765 /* CompanyModel.swift */; };
-		6078629E26E8F9DA004B8765 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6078629D26E8F9DA004B8765 /* CompanyCell.swift */; };
+		607862A126E9029A004B8765 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6078629F26E9029A004B8765 /* CompanyCell.swift */; };
+		607862A226E9029A004B8765 /* CompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607862A026E9029A004B8765 /* CompanyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,8 @@
 		6078629626E8EED0004B8765 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		6078629826E8EFCC004B8765 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		6078629B26E8F845004B8765 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
-		6078629D26E8F9DA004B8765 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
+		6078629F26E9029A004B8765 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
+		607862A026E9029A004B8765 /* CompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				607861DC26E69A78004B8765 /* MainViewController.swift */,
-				6078629D26E8F9DA004B8765 /* CompanyCell.swift */,
+				6078629F26E9029A004B8765 /* CompanyCell.swift */,
+				607862A026E9029A004B8765 /* CompanyCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				607861E526E69A7D004B8765 /* LaunchScreen.storyboard in Resources */,
 				607861E226E69A7D004B8765 /* Assets.xcassets in Resources */,
 				607861E026E69A78004B8765 /* Main.storyboard in Resources */,
+				607862A226E9029A004B8765 /* CompanyCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +239,7 @@
 				607861DB26E69A78004B8765 /* SceneDelegate.swift in Sources */,
 				6078622626E7734F004B8765 /* Employee.swift in Sources */,
 				6078622026E7716A004B8765 /* Company.swift in Sources */,
-				6078629E26E8F9DA004B8765 /* CompanyCell.swift in Sources */,
+				607862A126E9029A004B8765 /* CompanyCell.swift in Sources */,
 				6078629726E8EED0004B8765 /* Builder.swift in Sources */,
 				6078629426E8E983004B8765 /* Networking.swift in Sources */,
 				6078629226E8E95C004B8765 /* MainPresenter.swift in Sources */,
@@ -389,6 +393,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PLUM5QCSG5;
 				INFOPLIST_FILE = "$(SRCROOT)/AvitoTest/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,6 +413,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PLUM5QCSG5;
 				INFOPLIST_FILE = "$(SRCROOT)/AvitoTest/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

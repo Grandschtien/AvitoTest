@@ -8,16 +8,18 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
     private let tableView: UITableView = UITableView()
+    private let label: UILabel = UILabel()
     var presenter: MainViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Main"
+        self.view.backgroundColor = .white
+        self.title = presenter?.companyModel?.company?.name
         self.setupTableView()
     }
-
+    
 }
 
 //MARK:- TableView DataSource
@@ -29,9 +31,11 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? CompanyCell else { return UITableViewCell() }
         let employee = presenter?.companyModel?.company?.employees?[indexPath.row]
-        cell.textLabel?.text = employee?.name
+        cell.nameLabel.text = employee?.name
+        cell.phoneNumberLabel.text = employee?.phoneNumber
+        cell.skillsLabel.text = employee?.skills?.joined(separator: ", ")
         return cell
     }
     
@@ -51,7 +55,8 @@ extension MainViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.rowHeight = 100
+        tableView.register(UINib(nibName: CompanyCell.nib, bundle: nil), forCellReuseIdentifier: "Cell")
         self.view.addSubview(tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -69,6 +74,28 @@ extension MainViewController: MainViewProtocol {
     }
     
     func failure(error: Error) {
+        setupLabel()
         print(error.localizedDescription)
+    }
+}
+
+//MARK: setup error of connection label
+extension MainViewController {
+    private func setupLabel() {
+        tableView.isHidden = true
+        label.font = UIFont.systemFont(ofSize: 50, weight: .bold)
+        label.textColor = .lightGray
+        label.textAlignment = .center
+        label.minimumScaleFactor = 0.01
+        label.text = "Нет сети :("
+        self.view.addSubview(label)
+        setupConstraintsOfLabel()
+    }
+    private func setupConstraintsOfLabel() {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        label.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        label.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
     }
 }
