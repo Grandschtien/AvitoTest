@@ -15,8 +15,14 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadData))
         self.setupTableView()
+    }
+    
+    @objc private func reloadData() {
+        presenter?.reloadData()
+        
     }
     
 }
@@ -70,8 +76,10 @@ extension MainViewController {
 
 extension MainViewController: MainViewProtocol {
     func success() {
-        self.tableView.reloadData()
         self.title = presenter?.companyModel?.company?.name
+        label.isHidden = true
+        self.tableView.reloadData()
+        tableView.isHidden = false
     }
     
     func failure(error: Error) {
@@ -83,6 +91,7 @@ extension MainViewController: MainViewProtocol {
 extension MainViewController {
     private func setupLabel() {
         tableView.isHidden = true
+        label.isHidden = false
         label.font = UIFont.systemFont(ofSize: 50, weight: .bold)
         label.textColor = .lightGray
         label.textAlignment = .center
@@ -99,3 +108,4 @@ extension MainViewController {
         label.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
     }
 }
+
