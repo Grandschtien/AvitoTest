@@ -14,6 +14,7 @@ protocol MainViewProtocol: AnyObject {
 protocol MainViewPresenterProtocol {
     init(view: MainViewProtocol, networkService: NetworkingProtocol, router: RoutingProtocol)
     func getCompany()
+    //func appendToCache(cell: CompanyCell)
     var companyModel: CompanyModel? { get set }
 }
 
@@ -22,6 +23,7 @@ class MainPresenter: MainViewPresenterProtocol {
     var view: MainViewProtocol?
     var networkService: NetworkingProtocol?
     var router: RoutingProtocol?
+    
     required init(view: MainViewProtocol, networkService: NetworkingProtocol, router: RoutingProtocol) {
         self.view = view
         self.networkService = networkService
@@ -46,6 +48,5 @@ class MainPresenter: MainViewPresenterProtocol {
             }
         }
     }
-    
 }
 
